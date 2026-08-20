@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今日の直感ノート</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="mark">✦</p>
+        <h1>今日のチャネリングノート</h1>
+        <p class="intro">静かに呼吸を整えて、最初に浮かんだ言葉や感覚を記録してみましょう。答えの正しさより、今の自分に耳を傾ける時間を大切にします。</p>
+        <a class="history-link" href="history.html">これまでの記録を見る</a>
+      </header>
+      <p id="date" class="date"></p>
+      <section class="question" aria-labelledby="question-label">
+        <span id="question-label">今日のお題</span><br />
+        <span id="question"></span>
+      </section>
+      <form id="note-form">
+        <label for="note">浮かんだこと</label>
+        <textarea id="note" placeholder="考え込まず、自由に書いてみてください。"></textarea>
+        <button type="submit">今日の記録を保存する</button>
+      </form>
+      <p id="status" aria-live="polite"></p>
+      <section id="deepen" aria-live="polite">
+        <h2>もう少し、イメージを深める</h2>
+        <p>いちばん気になる問いをひとつ選び、考えすぎずに感じてみてください。</p>
+        <ol id="follow-ups"></ol>
+      </section>
+      <p class="note">記録はこのブラウザ内にのみ保存されます。お題は毎日0時に変わります。つらさが強まるときは、ここで止めて休み、信頼できる人や専門家に相談してください。</p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

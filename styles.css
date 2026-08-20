@@ -1,0 +1,33 @@
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; padding: 28px; background: #e9e0d0; background-image: radial-gradient(#f5eee4 1px, transparent 1px); background-size: 14px 14px; color: #4f4639; font-family: "Hiragino Sans", "Yu Gothic", -apple-system, BlinkMacSystemFont, sans-serif; }
+main { width: min(100%, 680px); margin: 0 auto; padding: 43px 39px 37px; border: 1px solid rgba(129,108,76,.14); border-radius: 5px 5px 28px 5px; background: #fbf8f1; box-shadow: 12px 14px 0 rgba(139,119,87,.12), 0 18px 45px rgba(84,66,43,.13); }
+header { text-align: center; }
+.mark { margin: 0 0 12px; color: #91a18c; font-size: 1.4rem; }
+h1 { margin: 0; color: #66573f; font-family: Georgia, "Times New Roman", serif; font-size: 2rem; font-weight: 600; letter-spacing: .06em; }
+.intro { margin: 14px auto 0; max-width: 470px; color: #786d5d; line-height: 1.8; }
+.history-link { display: inline-block; margin-top: 19px; color: #6f8069; font-size: .92rem; font-weight: 700; text-decoration-color: #c8a978; text-underline-offset: 4px; }
+.history-link:hover { color: #52654d; }
+.date { margin: 29px 0 10px; color: #968976; font-size: .88rem; letter-spacing: .08em; text-align: center; }
+.question { padding: 25px; border-left: 4px solid #c8a978; border-radius: 2px; background: #f2ebdf; color: #5e513e; font-family: Georgia, "Hiragino Mincho ProN", serif; font-size: 1.35rem; font-weight: 600; line-height: 1.7; text-align: center; }
+label { display: block; margin: 29px 0 9px; color: #605440; font-size: .94rem; font-weight: 700; letter-spacing: .06em; }
+textarea, button { width: 100%; border-radius: 4px; font: inherit; }
+textarea { min-height: 150px; padding: 15px 16px; resize: vertical; border: 1px solid #d5c9b6; background: #fffdf8; color: #4f4639; line-height: 1.7; }
+textarea:focus { outline: 3px solid rgba(145,161,140,.28); border-color: #91a18c; }
+button { margin-top: 17px; padding: 14px 16px; border: 0; background: #8c9b83; color: #fffdf8; font-weight: 700; letter-spacing: .05em; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+button:hover { background: #71816a; transform: translateY(-2px); }
+#status { min-height: 1.5em; margin: 14px 0 0; color: #7b8c74; font-size: .9rem; text-align: center; }
+#deepen { display: none; margin-top: 32px; padding-top: 27px; border-top: 1px solid #e1d7c8; }
+#deepen.visible { display: block; }
+#deepen h2 { margin: 0; color: #66573f; font-family: Georgia, "Hiragino Mincho ProN", serif; font-size: 1.28rem; }
+#deepen > p { color: #786d5d; line-height: 1.75; }
+#follow-ups { margin: 17px 0 0; padding-left: 1.4em; color: #5e513e; line-height: 1.9; }
+#follow-ups li { margin: 10px 0; padding-left: 4px; }
+.note { margin: 27px 0 0; padding-top: 18px; border-top: 1px solid #e1d7c8; color: #968976; font-size: .83rem; line-height: 1.7; text-align: center; }
+.history-status { margin: 32px 0 17px; color: #786d5d; font-size: .92rem; text-align: center; }
+.history-list { display: grid; gap: 16px; }
+.note-card { padding: 23px; border: 1px solid #e1d7c8; border-radius: 3px 3px 15px 3px; background: #fffdf8; }
+.note-card time { color: #8c9b83; font-size: .86rem; font-weight: 700; letter-spacing: .04em; }
+.note-card h2 { margin: 10px 0 18px; color: #5e513e; font-family: Georgia, "Hiragino Mincho ProN", serif; font-size: 1.12rem; font-weight: 600; line-height: 1.65; }
+.answer-label { margin: 0 0 6px; color: #968976; font-size: .8rem; font-weight: 700; }
+.saved-answer { margin: 0; color: #4f4639; line-height: 1.8; white-space: pre-wrap; }
+@media (max-width: 480px) { body { padding: 16px; } main { padding: 34px 25px 30px; } h1 { font-size: 1.7rem; } .question { font-size: 1.18rem; } }
