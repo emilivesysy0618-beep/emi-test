@@ -1,5 +1,6 @@
 const list = document.querySelector("#history-list");
 const status = document.querySelector("#history-status");
+const storageKey = "channeling-notes";
 
 function formatDate(value) {
   return new Date(`${value}T00:00:00`).toLocaleDateString("ja-JP", {
@@ -33,22 +34,23 @@ function makeNoteCard(savedNote) {
   return article;
 }
 
-async function loadHistory() {
+function getNotes() {
   try {
-    const response = await fetch("/api/notes");
-    if (!response.ok) throw new Error("読み込みに失敗しました。");
-    const notes = await response.json();
-
-    if (notes.length === 0) {
-      status.textContent = "まだ保存された記録はありません。";
-      return;
-    }
-
-    status.textContent = `${notes.length}件の記録があります。`;
-    list.replaceChildren(...notes.map(makeNoteCard));
+    return Object.values(JSON.parse(localStorage.getItem(storageKey)) || {});
   } catch {
-    status.textContent = "記録を読み込めませんでした。サーバーを起動して開き直してください。";
+    return [];
   }
+}
+
+function loadHistory() {
+  const notes = getNotes().sort((a, b) => b.note_date.localeCompare(a.note_date));
+  if (notes.length === 0) {
+    status.textContent = "このブラウザには、まだ保存された記録はありません。";
+    return;
+  }
+
+  status.textContent = `このブラウザに${notes.length}件の記録があります。`;
+  list.replaceChildren(...notes.map(makeNoteCard));
 }
 
 loadHistory();

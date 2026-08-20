@@ -15,6 +15,7 @@ const questions = [
 
 const today = new Date();
 const dateKey = [today.getFullYear(), String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0")].join("-");
+const storageKey = "channeling-notes";
 const dayNumber = Math.floor(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) / 86400000);
 const note = document.querySelector("#note");
 const status = document.querySelector("#status");
@@ -43,36 +44,36 @@ function showFollowUps(answer) {
 }
 
 async function loadNote() {
-  try {
-    const response = await fetch(`/api/notes/${dateKey}`);
-    if (!response.ok) throw new Error("読み込みに失敗しました。");
-    const savedNote = await response.json();
-    if (savedNote) {
-      note.value = savedNote.answer;
-      status.textContent = "SQLiteから今日の記録を読み込みました。";
-      showFollowUps(note.value);
-    }
-  } catch {
-    status.textContent = "記録を読み込めませんでした。サーバーを起動して開き直してください。";
+  const savedNote = getNotes()[dateKey];
+  if (savedNote) {
+    note.value = savedNote.answer;
+    status.textContent = "このブラウザに保存した今日の記録を読み込みました。";
+    showFollowUps(note.value);
   }
 }
 
-document.querySelector("#note-form").addEventListener("submit", async (event) => {
+function getNotes() {
+  try {
+    return JSON.parse(localStorage.getItem(storageKey)) || {};
+  } catch {
+    return {};
+  }
+}
+
+document.querySelector("#note-form").addEventListener("submit", (event) => {
   event.preventDefault();
   try {
-    const response = await fetch("/api/notes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        date: dateKey,
-        question: document.querySelector("#question").textContent,
-        answer: note.value
-      })
-    });
-    if (!response.ok) throw new Error("保存に失敗しました。");
-    status.textContent = "SQLiteに今日の記録を保存しました。";
+    const notes = getNotes();
+    notes[dateKey] = {
+      note_date: dateKey,
+      question: document.querySelector("#question").textContent,
+      answer: note.value.trim(),
+      updated_at: new Date().toISOString()
+    };
+    localStorage.setItem(storageKey, JSON.stringify(notes));
+    status.textContent = "このブラウザに今日の記録を保存しました。";
     showFollowUps(note.value);
   } catch {
-    status.textContent = "保存できませんでした。サーバーが起動しているか確認してください。";
+    status.textContent = "保存できませんでした。ブラウザの保存機能が利用できるか確認してください。";
   }
 });
