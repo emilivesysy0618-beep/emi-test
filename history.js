@@ -1,4 +1,4 @@
-import { auth, collection, db, getDocs, googleProvider, onAuthStateChanged, signInWithPopup, signOut } from "./firebase.js";
+import { auth, collection, db, getDocs, googleProvider, onAuthStateChanged, signInWithRedirect, signOut } from "./firebase.js";
 
 const list = document.querySelector("#history-list");
 const status = document.querySelector("#history-status");
@@ -43,7 +43,7 @@ async function loadHistory(user) {
 
 signInButton.addEventListener("click", async () => {
   signInButton.disabled = true;
-  try { await signInWithPopup(auth, googleProvider); } catch { authStatus.textContent = "ログインできませんでした。もう一度お試しください。"; } finally { signInButton.disabled = false; }
+  try { await signInWithRedirect(auth, googleProvider); } catch { authStatus.textContent = "ログインできませんでした。もう一度お試しください。"; signInButton.disabled = false; }
 });
 signOutButton.addEventListener("click", () => signOut(auth));
 
