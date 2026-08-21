@@ -14,9 +14,14 @@
         <p class="intro">これまでに書き留めた言葉を、ゆっくり振り返るためのページです。</p>
         <a class="history-link" href="index.html">今日のお題に戻る</a>
       </header>
+      <section class="account" aria-label="アカウント">
+        <p id="auth-status" class="auth-status" aria-live="polite">ログイン状態を確認しています。</p>
+        <button id="sign-in" class="auth-button" type="button">Googleでログイン</button>
+        <button id="sign-out" class="text-button" type="button" hidden>ログアウト</button>
+      </section>
       <p id="history-status" class="history-status" aria-live="polite">記録を読み込んでいます。</p>
       <section id="history-list" class="history-list" aria-label="保存済みの記録"></section>
     </main>
-    <script src="history.js"></script>
+    <script type="module" src="history.js"></script>
   </body>
 </html>

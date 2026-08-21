@@ -14,6 +14,11 @@
         <p class="intro">静かに呼吸を整えて、最初に浮かんだ言葉や感覚を記録してみましょう。答えの正しさより、今の自分に耳を傾ける時間を大切にします。</p>
         <a class="history-link" href="history.html">これまでの記録を見る</a>
       </header>
+      <section class="account" aria-label="アカウント">
+        <p id="auth-status" class="auth-status" aria-live="polite">ログイン状態を確認しています。</p>
+        <button id="sign-in" class="auth-button" type="button">Googleでログイン</button>
+        <button id="sign-out" class="text-button" type="button" hidden>ログアウト</button>
+      </section>
       <p id="date" class="date"></p>
       <section class="question" aria-labelledby="question-label">
         <span id="question-label">今日のお題</span><br />
@@ -21,8 +26,8 @@
       </section>
       <form id="note-form">
         <label for="note">浮かんだこと</label>
-        <textarea id="note" placeholder="考え込まず、自由に書いてみてください。"></textarea>
-        <button type="submit">今日の記録を保存する</button>
+        <textarea id="note" placeholder="Googleでログインすると記録できます。" disabled></textarea>
+        <button id="save-note" type="submit" disabled>今日の記録を保存する</button>
       </form>
       <p id="status" aria-live="polite"></p>
       <section id="deepen" aria-live="polite">
@@ -30,8 +35,8 @@
         <p>いちばん気になる問いをひとつ選び、考えすぎずに感じてみてください。</p>
         <ol id="follow-ups"></ol>
       </section>
-      <p class="note">記録はこのブラウザ内にのみ保存されます。お題は毎日0時に変わります。つらさが強まるときは、ここで止めて休み、信頼できる人や専門家に相談してください。</p>
+      <p class="note">記録はログインした本人のFirebaseアカウントにだけ保存されます。お題は毎日0時に変わります。つらさが強まるときは、ここで止めて休み、信頼できる人や専門家に相談してください。</p>
     </main>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>

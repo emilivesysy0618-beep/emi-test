@@ -7,6 +7,12 @@ h1 { margin: 0; color: #66573f; font-family: Georgia, "Times New Roman", serif; 
 .intro { margin: 14px auto 0; max-width: 470px; color: #786d5d; line-height: 1.8; }
 .history-link { display: inline-block; margin-top: 19px; color: #6f8069; font-size: .92rem; font-weight: 700; text-decoration-color: #c8a978; text-underline-offset: 4px; }
 .history-link:hover { color: #52654d; }
+.account { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding: 11px 14px; border: 1px solid #e1d7c8; border-radius: 4px; background: #fffdf8; }
+.auth-status { margin: 0; color: #786d5d; font-size: .84rem; }
+.auth-button, .text-button { width: auto; margin: 0; padding: 8px 12px; font-size: .84rem; }
+.auth-button { background: #6f8069; }
+.text-button { background: transparent; color: #6f8069; text-decoration: underline; text-underline-offset: 3px; }
+.text-button:hover { background: transparent; color: #52654d; }
 .date { margin: 29px 0 10px; color: #968976; font-size: .88rem; letter-spacing: .08em; text-align: center; }
 .question { padding: 25px; border-left: 4px solid #c8a978; border-radius: 2px; background: #f2ebdf; color: #5e513e; font-family: Georgia, "Hiragino Mincho ProN", serif; font-size: 1.35rem; font-weight: 600; line-height: 1.7; text-align: center; }
 label { display: block; margin: 29px 0 9px; color: #605440; font-size: .94rem; font-weight: 700; letter-spacing: .06em; }
@@ -15,6 +21,7 @@ textarea { min-height: 150px; padding: 15px 16px; resize: vertical; border: 1px 
 textarea:focus { outline: 3px solid rgba(145,161,140,.28); border-color: #91a18c; }
 button { margin-top: 17px; padding: 14px 16px; border: 0; background: #8c9b83; color: #fffdf8; font-weight: 700; letter-spacing: .05em; cursor: pointer; transition: background .2s ease, transform .2s ease; }
 button:hover { background: #71816a; transform: translateY(-2px); }
+button:disabled { background: #b9b2a8; cursor: not-allowed; transform: none; }
 #status { min-height: 1.5em; margin: 14px 0 0; color: #7b8c74; font-size: .9rem; text-align: center; }
 #deepen { display: none; margin-top: 32px; padding-top: 27px; border-top: 1px solid #e1d7c8; }
 #deepen.visible { display: block; }
