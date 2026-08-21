@@ -38,7 +38,7 @@ function setSignedInState(user) {
 }
 
 function showAuthError(error) {
-  const code = error?.code || "不明なエラー";
+  const code = error?.code || error?.message || "不明なエラー";
   authStatus.textContent = `ログインできませんでした（${code}）。`;
 }
 
