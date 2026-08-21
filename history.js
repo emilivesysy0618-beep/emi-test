@@ -1,4 +1,4 @@
-import { auth, collection, db, getDocs, googleProvider, onAuthStateChanged, signInWithPopup, signOut } from "./firebase.js?v=9761ed4";
+import { auth, collection, db, getDocs, getRedirectResult, googleProvider, onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut } from "./firebase.js?v=1858cce";
 
 const list = document.querySelector("#history-list");
 const status = document.querySelector("#history-status");
@@ -46,9 +46,20 @@ function showAuthError(error) {
   authStatus.textContent = `ログインできませんでした（${code}）。`;
 }
 
+function usesMobileSafari() {
+  const isAppleMobile = /iPhone|iPad|iPod/.test(navigator.userAgent)
+    || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  return isAppleMobile && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent);
+}
+
+getRedirectResult(auth).catch(showAuthError);
+
 signInButton.addEventListener("click", async () => {
   signInButton.disabled = true;
-  try { await signInWithPopup(auth, googleProvider); } catch (error) { showAuthError(error); signInButton.disabled = false; }
+  try {
+    if (usesMobileSafari()) await signInWithRedirect(auth, googleProvider);
+    else await signInWithPopup(auth, googleProvider);
+  } catch (error) { showAuthError(error); signInButton.disabled = false; }
 });
 signOutButton.addEventListener("click", () => signOut(auth));
 
