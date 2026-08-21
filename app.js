@@ -1,4 +1,4 @@
-import { auth, db, doc, getDoc, googleProvider, onAuthStateChanged, serverTimestamp, setDoc, signInWithPopup, signOut } from "./firebase.js";
+import { auth, db, doc, getDoc, googleProvider, onAuthStateChanged, serverTimestamp, setDoc, signInWithPopup, signOut } from "./firebase.js?v=9761ed4";
 
 const questions = [
   "未来の自分から、今の自分へ届くメッセージがあるとしたら、どんな言葉だろう？", "半年後の自分が、今日の自分にそっと勧めたい一歩は何だろう？", "過去の自分に、今ならどんな安心を渡してあげられるだろう？", "胸に残る記憶を、無理のない範囲で見つめたとき、今の自分が気づけるやさしさは何だろう？", "今の自分の本音や内なる声は、何を大切にしてほしいと言っているだろう？", "静かな場所で自分の内側に意識を向けると、どんな願いが浮かぶだろう？", "今日の迷いの奥には、どんな望みが隠れているだろう？", "未来の安心した自分は、どんな表情で何をしているだろう？", "手放しても大丈夫な思い込みをひとつ挙げるとしたら、何だろう？", "今日の自分を守り、満たすためにできる小さな行動は何だろう？", "自分の内側の知恵が、今いちばん伝えたいことは何だろう？", "これから育てていきたい感覚やエネルギーを、ひとことで表すと何だろう？"

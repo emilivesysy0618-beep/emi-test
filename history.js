@@ -1,4 +1,4 @@
-import { auth, collection, db, getDocs, googleProvider, onAuthStateChanged, signInWithPopup, signOut } from "./firebase.js";
+import { auth, collection, db, getDocs, googleProvider, onAuthStateChanged, signInWithPopup, signOut } from "./firebase.js?v=9761ed4";
 
 const list = document.querySelector("#history-list");
 const status = document.querySelector("#history-status");
