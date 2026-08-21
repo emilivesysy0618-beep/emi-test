@@ -1,4 +1,4 @@
-import { auth, collection, db, getDocs, getRedirectResult, googleProvider, onAuthStateChanged, signInWithRedirect, signOut } from "./firebase.js";
+import { auth, collection, db, getDocs, googleProvider, onAuthStateChanged, signInWithPopup, signOut } from "./firebase.js";
 
 const list = document.querySelector("#history-list");
 const status = document.querySelector("#history-status");
@@ -48,11 +48,9 @@ function showAuthError(error) {
 
 signInButton.addEventListener("click", async () => {
   signInButton.disabled = true;
-  try { await signInWithRedirect(auth, googleProvider); } catch (error) { showAuthError(error); signInButton.disabled = false; }
+  try { await signInWithPopup(auth, googleProvider); } catch (error) { showAuthError(error); signInButton.disabled = false; }
 });
 signOutButton.addEventListener("click", () => signOut(auth));
-
-getRedirectResult(auth).catch(showAuthError);
 
 onAuthStateChanged(auth, async (user) => {
   const signedIn = Boolean(user);

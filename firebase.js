@@ -1,6 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-import { GoogleAuthProvider, getAuth, getRedirectResult, onAuthStateChanged, signInWithRedirect, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-import { collection, doc, getDoc, getDocs, getFirestore, serverTimestamp, setDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+import { collection, doc, getDoc, getDocs, getFirestore, serverTimestamp, setDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQhJOWnlha6EBd9q0ZX831ejz8BiLe9xc",
@@ -16,4 +16,4 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-export { auth, collection, db, doc, getDoc, getDocs, getRedirectResult, googleProvider, onAuthStateChanged, serverTimestamp, setDoc, signInWithRedirect, signOut };
+export { auth, collection, db, doc, getDoc, getDocs, googleProvider, onAuthStateChanged, serverTimestamp, setDoc, signInWithPopup, signOut };
