@@ -1,4 +1,4 @@
-import { auth, collection, db, getDocs, googleProvider, onAuthStateChanged, signInWithRedirect, signOut } from "./firebase.js";
+import { auth, collection, db, getDocs, getRedirectResult, googleProvider, onAuthStateChanged, signInWithRedirect, signOut } from "./firebase.js";
 
 const list = document.querySelector("#history-list");
 const status = document.querySelector("#history-status");
@@ -41,11 +41,18 @@ async function loadHistory(user) {
   }
 }
 
+function showAuthError(error) {
+  const code = error?.code || "不明なエラー";
+  authStatus.textContent = `ログインできませんでした（${code}）。`;
+}
+
 signInButton.addEventListener("click", async () => {
   signInButton.disabled = true;
-  try { await signInWithRedirect(auth, googleProvider); } catch { authStatus.textContent = "ログインできませんでした。もう一度お試しください。"; signInButton.disabled = false; }
+  try { await signInWithRedirect(auth, googleProvider); } catch (error) { showAuthError(error); signInButton.disabled = false; }
 });
 signOutButton.addEventListener("click", () => signOut(auth));
+
+getRedirectResult(auth).catch(showAuthError);
 
 onAuthStateChanged(auth, async (user) => {
   const signedIn = Boolean(user);

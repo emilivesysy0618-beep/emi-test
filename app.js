@@ -1,4 +1,4 @@
-import { auth, db, doc, getDoc, googleProvider, onAuthStateChanged, serverTimestamp, setDoc, signInWithRedirect, signOut } from "./firebase.js";
+import { auth, db, doc, getDoc, getRedirectResult, googleProvider, onAuthStateChanged, serverTimestamp, setDoc, signInWithRedirect, signOut } from "./firebase.js";
 
 const questions = [
   "未来の自分から、今の自分へ届くメッセージがあるとしたら、どんな言葉だろう？", "半年後の自分が、今日の自分にそっと勧めたい一歩は何だろう？", "過去の自分に、今ならどんな安心を渡してあげられるだろう？", "胸に残る記憶を、無理のない範囲で見つめたとき、今の自分が気づけるやさしさは何だろう？", "今の自分の本音や内なる声は、何を大切にしてほしいと言っているだろう？", "静かな場所で自分の内側に意識を向けると、どんな願いが浮かぶだろう？", "今日の迷いの奥には、どんな望みが隠れているだろう？", "未来の安心した自分は、どんな表情で何をしているだろう？", "手放しても大丈夫な思い込みをひとつ挙げるとしたら、何だろう？", "今日の自分を守り、満たすためにできる小さな行動は何だろう？", "自分の内側の知恵が、今いちばん伝えたいことは何だろう？", "これから育てていきたい感覚やエネルギーを、ひとことで表すと何だろう？"
@@ -37,6 +37,11 @@ function setSignedInState(user) {
   note.placeholder = signedIn ? "考え込まず、自由に書いてみてください。" : "Googleでログインすると記録できます。";
 }
 
+function showAuthError(error) {
+  const code = error?.code || "不明なエラー";
+  authStatus.textContent = `ログインできませんでした（${code}）。`;
+}
+
 async function loadNote() {
   if (!currentUser) return;
   status.textContent = "記録を読み込んでいます。";
@@ -58,9 +63,11 @@ async function loadNote() {
 
 signInButton.addEventListener("click", async () => {
   signInButton.disabled = true;
-  try { await signInWithRedirect(auth, googleProvider); } catch { authStatus.textContent = "ログインできませんでした。もう一度お試しください。"; signInButton.disabled = false; }
+  try { await signInWithRedirect(auth, googleProvider); } catch (error) { showAuthError(error); signInButton.disabled = false; }
 });
 signOutButton.addEventListener("click", () => signOut(auth));
+
+getRedirectResult(auth).catch(showAuthError);
 
 document.querySelector("#note-form").addEventListener("submit", async (event) => {
   event.preventDefault();
